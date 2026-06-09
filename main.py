@@ -41,18 +41,16 @@ ELECTRICITY_TARIFF_PER_KWH = 1444.70
 # FIREBASE INIT
 # ==================================================
 
-cred = credentials.Certificate(
-    "serviceAccountKey.json"
+import os
+import json
+
+firebase_json = json.loads(
+    os.environ["FIREBASE_CREDENTIALS"]
 )
 
-if not firebase_admin._apps:
-    firebase_admin.initialize_app(
-        cred,
-        {
-            "databaseURL":
-            "https://smart-plug-85cf6-default-rtdb.asia-southeast1.firebasedatabase.app/"
-        }
-    )
+cred = credentials.Certificate(
+    firebase_json
+)
 
 
 # ==================================================
